@@ -1,0 +1,55 @@
+🔒 Implementation
+1. SSH Hardening
+/etc/ssh/sshd_config
+
+PermitRootLogin no
+PasswordAuthentication no
+Port 2222
+
+✔ Root login disabled
+✔ Custom SSH port
+✔ Key-based authentication
+
+2. Firewall Configuration (UFW)
+ufw allow 2222/tcp
+ufw allow 80
+ufw allow 443
+ufw enable
+
+✔ Only essential ports open
+✔ Default deny incoming traffic
+
+3. Fail2Ban Protection
+/etc/fail2ban/jail.local
+
+[sshd]
+enabled = true
+port = 2222
+maxretry = 3
+bantime = 3600
+
+✔ Automatic IP banning
+✔ Brute-force mitigation
+
+4. Security Testing
+nmap -sS icmlabs.site
+
+✔ Only HTTP/HTTPS exposed
+✔ SSH hidden from standard scan
+
+📊 Results
+Security Area	Status
+SSH Security	✅ Hardened
+Firewall	✅ Active
+Brute Force Defense	✅ Enabled
+Open Ports	✅ Minimal
+📸 Screenshots
+/screenshots/
+
+Required:
+
+ssh-config.png
+ufw-status.png
+fail2ban-status.png
+nmap-scan.png
+website.png
